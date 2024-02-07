@@ -25,7 +25,6 @@
     <string name="home_info_copied">Αντιγράφηκε στο πρόχειρο</string>
     <string name="home_support">Υποστήριξη</string>
     <string name="home_description">Το LSPatch είναι ένα δωρεάν πλαίσιο Xposed χωρίς ρίζα που βασίζεται στον πυρήνα LSPosed.</string>
-    <string name="home_view_source_code"><![CDATA[Δείτε τον πηγαίο κώδικα στο %1$s<br/>Εγγραφείτε στο %2$s κανάλι μας]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Διαχείριση</string>
     <string name="manage_loading">Φόρτωση</string>

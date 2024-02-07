@@ -25,7 +25,6 @@
     <string name="home_info_copied">Скопировано в буфер обмена</string>
     <string name="home_support">О приложении</string>
     <string name="home_description">LSPatch — это бесплатный фреймворк Xposed без полномочий root, основанный на ядре LSPosed</string>
-    <string name="home_view_source_code"><![CDATA[Посмотреть исходный код на %1$s<br/>Присоединяйтесь к нашему %2$s каналу]]></string>
     <!-- Manage Screen -->
     <string name="screen_manage">Управлять</string>
     <string name="manage_loading">Загрузка</string>

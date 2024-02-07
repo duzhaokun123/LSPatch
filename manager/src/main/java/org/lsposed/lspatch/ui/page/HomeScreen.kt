@@ -241,8 +241,7 @@ private fun SupportCard() {
             HtmlText(
                 stringResource(
                     R.string.home_view_source_code,
-                    "<b><a href=\"https://github.com/LSPosed/LSPatch\">GitHub</a></b>",
-                    "<b><a href=\"https://t.me/LSPosed\">Telegram</a></b>"
+                    "<b><a href=\"https://github.com/duzhaokun123/LSPatch\">GitHub</a></b>"
                 )
             )
         }

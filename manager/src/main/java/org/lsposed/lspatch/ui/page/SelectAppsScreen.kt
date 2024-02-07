@@ -25,12 +25,12 @@ import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.result.ResultBackNavigator
 import kotlinx.parcelize.Parcelize
-import org.lsposed.lspatch.R
 import org.lsposed.lspatch.ui.component.AppItem
 import org.lsposed.lspatch.ui.component.SearchAppBar
 import org.lsposed.lspatch.ui.viewmodel.SelectAppsViewModel
 import org.lsposed.lspatch.util.LSPPackageManager
 import org.lsposed.lspatch.util.LSPPackageManager.AppInfo
+import io.github.duzhaokun123.lspatch.R
 
 @Parcelize
 sealed class SelectAppsResult : Parcelable {

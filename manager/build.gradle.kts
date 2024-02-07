@@ -58,7 +58,7 @@ android {
         kotlinCompilerExtensionVersion = "1.4.7"
     }
 
-    namespace = "org.lsposed.lspatch"
+    namespace = "io.github.duzhaokun123.lspatch"
 
     applicationVariants.all {
         kotlin.sourceSets {

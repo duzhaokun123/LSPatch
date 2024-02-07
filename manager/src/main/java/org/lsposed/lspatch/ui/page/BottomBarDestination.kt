@@ -6,8 +6,8 @@ import androidx.compose.material.icons.filled.*
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.ramcosta.composedestinations.spec.DirectionDestinationSpec
-import org.lsposed.lspatch.R
 import org.lsposed.lspatch.ui.page.destinations.*
+import io.github.duzhaokun123.lspatch.R
 
 enum class BottomBarDestination(
     val direction: DirectionDestinationSpec,

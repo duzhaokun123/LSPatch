@@ -39,7 +39,6 @@ import com.ramcosta.composedestinations.result.NavResult
 import com.ramcosta.composedestinations.result.ResultRecipient
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import org.lsposed.lspatch.R
 import org.lsposed.lspatch.lspApp
 import org.lsposed.lspatch.ui.component.AnywhereDropdown
 import org.lsposed.lspatch.ui.component.SelectionColumn
@@ -56,6 +55,7 @@ import org.lsposed.lspatch.ui.viewmodel.NewPatchViewModel.ViewAction
 import org.lsposed.lspatch.util.LSPPackageManager
 import org.lsposed.lspatch.util.LSPPackageManager.AppInfo
 import org.lsposed.lspatch.util.ShizukuApi
+import io.github.duzhaokun123.lspatch.R
 
 private const val TAG = "NewPatchPage"
 

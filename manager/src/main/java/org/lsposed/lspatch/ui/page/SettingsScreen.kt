@@ -24,8 +24,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
+import io.github.duzhaokun123.lspatch.R
 import kotlinx.coroutines.launch
-import org.lsposed.lspatch.R
 import org.lsposed.lspatch.config.Configs
 import org.lsposed.lspatch.config.MyKeyStore
 import org.lsposed.lspatch.ui.component.AnywhereDropdown

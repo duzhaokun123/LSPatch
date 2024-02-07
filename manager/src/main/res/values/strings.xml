@@ -43,6 +43,7 @@
     <string name="manage_no_modules">No modules yet</string>
     <string name="manage_module_settings">Module settings</string>
     <string name="manage_app_info">App info</string>
+    <string name="manage_check_manager_package_name">This app is manager by %1$s\nchang scope in this manager %2$s not work\nrepatch app to solve it</string>
 
     <!-- New Patch Screen -->
     <string name="screen_new_patch">New Patch</string>

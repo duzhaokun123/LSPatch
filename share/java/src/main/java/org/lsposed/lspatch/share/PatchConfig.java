@@ -9,6 +9,7 @@ public class PatchConfig {
     public final String originalSignature;
     public final String appComponentFactory;
     public final LSPConfig lspConfig;
+    public final String managerPackageName;
 
     public PatchConfig(
             boolean useManager,
@@ -25,5 +26,6 @@ public class PatchConfig {
         this.originalSignature = originalSignature;
         this.appComponentFactory = appComponentFactory;
         this.lspConfig = LSPConfig.instance;
+        this.managerPackageName = Constants.MANAGER_PACKAGE_NAME;
     }
 }

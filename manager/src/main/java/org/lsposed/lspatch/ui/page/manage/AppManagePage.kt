@@ -5,6 +5,7 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -30,6 +31,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Dialog
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -85,6 +87,7 @@ fun AppManageBody(
         }
     } else {
         var scopeApp by rememberSaveable { mutableStateOf("") }
+        var afterCheckManager by remember { mutableStateOf<(() -> Unit)?>(null) }
         resultRecipient.onNavResult {
             if (it is NavResult.Value) {
                 scope.launch {
@@ -134,6 +137,39 @@ fun AppManageBody(
                     viewModel.dispatch(AppManageViewModel.ViewAction.ClearOptimizeResult)
                 }
             }
+        }
+        if (afterCheckManager != null) {
+            AlertDialog(
+                onDismissRequest = { afterCheckManager = null },
+                confirmButton = {
+                    TextButton(
+                        content = { Text(stringResource(android.R.string.ok)) },
+                        onClick = {
+                            afterCheckManager?.invoke()
+                            afterCheckManager = null
+                        }
+                    )
+                },
+                dismissButton = {
+                    TextButton(
+                        content = { Text(stringResource(android.R.string.cancel)) },
+                        onClick = { afterCheckManager = null }
+                    )
+                },
+                text = {
+                    val managerPackageName = viewModel.appList.find { it.first.app.packageName == scopeApp }?.second?.managerPackageName
+                    var managerName = "Unknown"
+                    var s2 = "may"
+                    if (managerPackageName != null) {
+                        val pm = lspApp.packageManager
+                        runCatching {
+                            managerName = pm.getApplicationLabel(pm.getApplicationInfo(managerPackageName, 0)).toString()
+                            s2 = "must"
+                        }
+                    }
+                    Text(stringResource(R.string.manage_check_manager_package_name, "$managerName($managerPackageName)", s2))
+                }
+            )
         }
 
         LazyColumn(Modifier.fillMaxHeight()) {
@@ -206,13 +242,20 @@ fun AppManageBody(
                             text = { Text(stringResource(R.string.manage_module_scope)) },
                             onClick = {
                                 expanded = false
-                                scope.launch {
-                                    scopeApp = it.first.app.packageName
-                                    val activated = ConfigManager.getModulesForApp(scopeApp).map { it.pkgName }.toSet()
-                                    val initialSelected = LSPPackageManager.appList.mapNotNullTo(ArrayList()) {
-                                        if (activated.contains(it.app.packageName)) it.app.packageName else null
+                                scopeApp = it.first.app.packageName
+                                fun openSelectAppsScreen() {
+                                    scope.launch {
+                                        val activated = ConfigManager.getModulesForApp(scopeApp).map { it.pkgName }.toSet()
+                                        val initialSelected = LSPPackageManager.appList.mapNotNullTo(ArrayList()) {
+                                            if (activated.contains(it.app.packageName)) it.app.packageName else null
+                                        }
+                                        navigator.navigate(SelectAppsScreenDestination(true, initialSelected))
                                     }
-                                    navigator.navigate(SelectAppsScreenDestination(true, initialSelected))
+                                }
+                                if (it.second.managerPackageName == BuildConfig.APPLICATION_ID) {
+                                    openSelectAppsScreen()
+                                } else {
+                                    afterCheckManager = ::openSelectAppsScreen
                                 }
                             }
                         )

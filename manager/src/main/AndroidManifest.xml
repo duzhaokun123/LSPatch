@@ -23,6 +23,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity-alias
+            android:name="org.lsposed.lspatch.ui.activity.InstallActivity"
+            android:enabled="false"
+            android:exported="true"
+            android:targetActivity="org.lsposed.lspatch.ui.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -31,7 +37,7 @@
                 <data android:scheme="content" />
                 <data android:mimeType="application/vnd.android.package-archive" />
             </intent-filter>
-        </activity>
+        </activity-alias>
 
         <service
             android:name="org.lsposed.lspatch.manager.ModuleService"

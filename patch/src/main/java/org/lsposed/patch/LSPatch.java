@@ -271,6 +271,7 @@ public class LSPatch {
                 // do not put liblspatch.so into apk!lib because x86 native bridge causes crash
                 for (String arch : ARCHES) {
                     String entryName = "assets/lspatch/so/" + arch + "/liblspatch.so";
+                    logger.d("adding " + entryName);
                     try (var is = getClass().getClassLoader().getResourceAsStream(entryName)) {
                         dstZFile.add(entryName, is, false); // no compress for so
                     } catch (Throwable e) {

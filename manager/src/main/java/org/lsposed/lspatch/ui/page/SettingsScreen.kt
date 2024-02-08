@@ -1,7 +1,9 @@
 package org.lsposed.lspatch.ui.page
 
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -32,6 +34,7 @@ import io.github.duzhaokun123.lspatch.R
 import kotlinx.coroutines.launch
 import org.lsposed.lspatch.config.Configs
 import org.lsposed.lspatch.config.MyKeyStore
+import org.lsposed.lspatch.lspApp
 import org.lsposed.lspatch.ui.component.AnywhereDropdown
 import org.lsposed.lspatch.ui.component.CenterTopBar
 import org.lsposed.lspatch.ui.component.settings.SettingsItem
@@ -58,6 +61,7 @@ fun SettingsScreen() {
             KeyStore()
             DetailPatchLogs()
             StorageDirectory()
+            InstallActivity()
         }
     }
 }
@@ -268,17 +272,32 @@ private fun StorageDirectory() {
             scope.launch { snackbarHost.showSnackbar(errorText) }
         }
     }
-    AnywhereDropdown(
-        expanded = false,
-        onDismissRequest = { },
-        onClick = {
-            launcher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE))
-        },
-        surface = {
-            SettingsItem(
-                title = stringResource(R.string.settings_storage_directory),
-                desc = Configs.storageDirectory ?: "undefined",
-                icon = Icons.Outlined.Folder
+    SettingsItem(
+        title = stringResource(R.string.settings_storage_directory),
+        desc = Configs.storageDirectory ?: "undefined",
+        icon = Icons.Outlined.Folder,
+        modifier = Modifier.clickable { launcher.launch(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) }
+    )
+}
+
+@Composable
+private fun InstallActivity() {
+    val pm = lspApp.packageManager
+    val componentName = ComponentName(lspApp, "org.lsposed.lspatch.ui.activity.InstallActivity")
+    var enabled by remember { mutableStateOf(pm.getComponentEnabledSetting(componentName) == PackageManager.COMPONENT_ENABLED_STATE_ENABLED) }
+    SettingsSwitch(
+        checked = enabled,
+        title = "Enable install activity",
+        modifier = Modifier.clickable {
+            pm.setComponentEnabledSetting(
+                componentName,
+                if (enabled)
+                    PackageManager.COMPONENT_ENABLED_STATE_DISABLED
+                else
+                    PackageManager.COMPONENT_ENABLED_STATE_ENABLED,
+                PackageManager.DONT_KILL_APP
             )
-        }) {}
+            enabled = !enabled
+        }
+    )
 }

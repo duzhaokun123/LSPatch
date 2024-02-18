@@ -30,7 +30,7 @@ import org.lsposed.lspatch.ui.component.SearchAppBar
 import org.lsposed.lspatch.ui.viewmodel.SelectAppsViewModel
 import org.lsposed.lspatch.util.LSPPackageManager
 import org.lsposed.lspatch.util.LSPPackageManager.AppInfo
-import io.github.duzhaokun123.lspatch.R
+import org.lsposed.lspatch.R
 
 @Parcelize
 sealed class SelectAppsResult : Parcelable {

@@ -43,7 +43,7 @@ import org.lsposed.lspatch.ui.util.HtmlText
 import org.lsposed.lspatch.ui.util.LocalSnackbarHost
 import org.lsposed.lspatch.util.ShizukuApi
 import rikka.shizuku.Shizuku
-import io.github.duzhaokun123.lspatch.R
+import org.lsposed.lspatch.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @RootNavGraph(start = true)

@@ -38,9 +38,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.ramcosta.composedestinations.result.NavResult
 import com.ramcosta.composedestinations.result.ResultRecipient
-import io.github.duzhaokun123.lspatch.BuildConfig
-import io.github.duzhaokun123.lspatch.R
+import org.lsposed.lspatch.R
 import kotlinx.coroutines.launch
+import org.lsposed.lspatch.BuildConfig
 import org.lsposed.lspatch.config.ConfigManager
 import org.lsposed.lspatch.config.Configs
 import org.lsposed.lspatch.database.entity.Module

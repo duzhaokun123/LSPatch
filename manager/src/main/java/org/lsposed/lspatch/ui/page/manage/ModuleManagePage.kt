@@ -22,11 +22,11 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
+import org.lsposed.lspatch.R
 import org.lsposed.lspatch.ui.component.AnywhereDropdown
 import org.lsposed.lspatch.ui.component.AppItem
 import org.lsposed.lspatch.ui.viewmodel.manage.ModuleManageViewModel
 import org.lsposed.lspatch.util.LSPPackageManager
-import io.github.duzhaokun123.lspatch.R
 
 @Composable
 fun ModuleManageBody() {

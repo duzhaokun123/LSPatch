@@ -55,7 +55,7 @@ import org.lsposed.lspatch.ui.viewmodel.NewPatchViewModel.ViewAction
 import org.lsposed.lspatch.util.LSPPackageManager
 import org.lsposed.lspatch.util.LSPPackageManager.AppInfo
 import org.lsposed.lspatch.util.ShizukuApi
-import io.github.duzhaokun123.lspatch.R
+import org.lsposed.lspatch.R
 
 private const val TAG = "NewPatchPage"
 

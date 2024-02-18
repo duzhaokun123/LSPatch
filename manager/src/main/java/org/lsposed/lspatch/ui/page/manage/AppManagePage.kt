@@ -53,6 +53,7 @@ import org.lsposed.lspatch.ui.component.LoadingDialog
 import org.lsposed.lspatch.ui.page.ACTION_APPLIST
 import org.lsposed.lspatch.ui.page.ACTION_STORAGE
 import org.lsposed.lspatch.ui.page.SelectAppsResult
+import org.lsposed.lspatch.ui.page.SelectAppsType
 import org.lsposed.lspatch.ui.page.destinations.NewPatchScreenDestination
 import org.lsposed.lspatch.ui.page.destinations.SelectAppsScreenDestination
 import org.lsposed.lspatch.ui.util.LocalSnackbarHost
@@ -249,7 +250,7 @@ fun AppManageBody(
                                         val initialSelected = LSPPackageManager.appList.mapNotNullTo(ArrayList()) {
                                             if (activated.contains(it.app.packageName)) it.app.packageName else null
                                         }
-                                        navigator.navigate(SelectAppsScreenDestination(true, initialSelected))
+                                        navigator.navigate(SelectAppsScreenDestination(true, SelectAppsType.XposedModule, initialSelected))
                                     }
                                 }
                                 if (it.second.managerPackageName == BuildConfig.APPLICATION_ID) {

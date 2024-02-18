@@ -9,6 +9,7 @@ import android.content.pm.PackageManager
 import android.content.pm.PackageManagerHidden
 import android.net.Uri
 import android.os.Parcelable
+import android.util.Base64
 import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,6 +45,13 @@ object LSPPackageManager {
     class AppInfo(val app: ApplicationInfo, val label: String) : Parcelable {
         val isXposedModule: Boolean
             get() = app.metaData?.get("xposedminversion") != null
+
+        val isManaged: Boolean
+            get() = app.metaData?.getString("lspatch")?.let {
+                val json = Base64.decode(it, Base64.DEFAULT).toString(Charsets.UTF_8)
+                json.contains("\"useManager\":true")
+                true
+            } ?: false
     }
 
     var appList by mutableStateOf(listOf<AppInfo>())

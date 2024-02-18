@@ -13,6 +13,9 @@ interface ScopeDao {
     @Query("SELECT * FROM module INNER JOIN scope ON module.pkgName = scope.modulePkgName WHERE scope.appPkgName = :appPkgName")
     suspend fun getModulesForApp(appPkgName: String): List<Module>
 
+    @Query("SELECT appPkgName FROM scope WHERE modulePkgName = :modulePkgName")
+    suspend fun getAppForModule(modulePkgName: String): List<String>
+
     @Insert
     suspend fun insert(scope: Scope)
 

@@ -129,7 +129,7 @@ fun NewPatchScreen(
                     }
 
                     ACTION_APPLIST -> {
-                        navigator.navigate(SelectAppsScreenDestination(false))
+                        navigator.navigate(SelectAppsScreenDestination(false, SelectAppsType.All))
                         viewModel.dispatch(ViewAction.DoneInit)
                     }
 
@@ -228,7 +228,7 @@ fun NewPatchScreen(
                                 colors = ButtonDefaults.textButtonColors(contentColor = MaterialTheme.colorScheme.secondary),
                                 onClick = {
                                     navigator.navigate(
-                                        SelectAppsScreenDestination(true,
+                                        SelectAppsScreenDestination(true, SelectAppsType.XposedModule,
                                             viewModel.embeddedModules.mapTo(ArrayList()) { it.app.packageName })
                                     )
                                     showSelectModuleDialog = false

@@ -51,14 +51,29 @@ object ConfigManager {
             scopeDao.insert(Scope(appPkgName = pkgName, modulePkgName = module.pkgName))
         }
 
+    suspend fun activateModule(pkgName: String, module: String) =
+        withContext(dispatcher) {
+            scopeDao.insert(Scope(appPkgName = pkgName, modulePkgName = module))
+        }
+
     suspend fun deactivateModule(pkgName: String, module: Module) =
         withContext(dispatcher) {
             scopeDao.delete(Scope(appPkgName = pkgName, modulePkgName = module.pkgName))
         }
 
+    suspend fun deactivateModule(pkgName: String, module: String) =
+        withContext(dispatcher) {
+            scopeDao.delete(Scope(appPkgName = pkgName, modulePkgName = module))
+        }
+
     suspend fun getModulesForApp(pkgName: String): List<Module> =
         withContext(dispatcher) {
             return@withContext scopeDao.getModulesForApp(pkgName)
+        }
+
+    suspend fun getAppForModule(modulePkgName: String): List<String> =
+        withContext(dispatcher) {
+            return@withContext scopeDao.getAppForModule(modulePkgName)
         }
 
     suspend fun getModuleFilesForApp(pkgName: String): List<org.lsposed.lspd.models.Module> =

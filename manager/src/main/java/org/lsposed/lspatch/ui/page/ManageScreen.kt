@@ -65,7 +65,7 @@ fun ManageScreen(
                 HorizontalPager(count = 2, state = pagerState) { page ->
                     when (page) {
                         0 -> AppManageBody(navigator, resultRecipient)
-                        1 -> ModuleManageBody()
+                        1 -> ModuleManageBody(navigator, resultRecipient)
                     }
                 }
             }

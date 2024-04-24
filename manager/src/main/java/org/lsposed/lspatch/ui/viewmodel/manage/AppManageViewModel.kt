@@ -43,7 +43,8 @@ class AppManageViewModel : ViewModel() {
             appInfo.app.metaData?.getString("lspatch")?.let {
                 val json = Base64.decode(it, Base64.DEFAULT).toString(Charsets.UTF_8)
                 Log.d(TAG, "Read patched config: $json")
-                appInfo to Gson().fromJson(json, PatchConfig::class.java)
+                val config = Gson().fromJson(json, PatchConfig::class.java)
+                if (config.lspConfig == null) null else appInfo to config
             }
         }.also {
             Log.d(TAG, "Loaded ${it.size} patched apps")

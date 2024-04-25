@@ -40,12 +40,14 @@ class AppManageViewModel : ViewModel() {
 
     val appList: List<Pair<AppInfo, PatchConfig>> by derivedStateOf {
         LSPPackageManager.appList.mapNotNull { appInfo ->
-            appInfo.app.metaData?.getString("lspatch")?.let {
-                val json = Base64.decode(it, Base64.DEFAULT).toString(Charsets.UTF_8)
-                Log.d(TAG, "Read patched config: $json")
-                val config = Gson().fromJson(json, PatchConfig::class.java)
-                if (config.lspConfig == null) null else appInfo to config
-            }
+            runCatching {
+                appInfo.app.metaData?.getString("lspatch")?.let {
+                    val json =  Base64.decode(it, Base64.DEFAULT).toString(Charsets.UTF_8)
+                    Log.d(TAG, "Read patched config: $json")
+                    val config = Gson().fromJson(json, PatchConfig::class.java)
+                    if (config?.lspConfig == null) null else appInfo to config
+                }
+            }.getOrNull()
         }.also {
             Log.d(TAG, "Loaded ${it.size} patched apps")
         }
